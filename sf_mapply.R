@@ -5,7 +5,7 @@ setwd("~/Documents/GitHub/sf_mapply")
 
 # load data
 circles <- st_read("circles.shp")
-blocks <- st_read("ca_blocks.shp")
+blocks <- st_read("ca_blocks.shp") # only a sample, because file is massive
 points <- st_read("points.shp")
 
 # create function
@@ -61,7 +61,8 @@ plot(county_test) # works
 
 mapply(county_func, x = circles_list$county_75, y = points_75)
 
-# 
+# Error in UseMethod("st_drop_geometry") : 
+#   no applicable method for 'st_drop_geometry' applied to an object of class "character"
 
 ### keep only numeric data
 test <- circles %>%
@@ -75,12 +76,9 @@ test <- test %>%
 group_name <- test_df$group_name
 circles_list_num <- group_split(test) %>%
   setNames(group_name)
-plot(circles_list_num$county_75)
 
-#
 points_75_num <- points_75 %>%
   dplyr::select(geometry)
-plot(points_75_num)
 
 # test mapply
 mapply(county_func, x = circles_list_num$county_75, y = points_75_num)
