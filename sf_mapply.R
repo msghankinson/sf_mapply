@@ -59,7 +59,7 @@ county_test <- county_func(circles_list$county_75, points_75)
 
 plot(county_test) # works
 
-mapply(county_func, x = circles_list$county_75, y = points_75)
+mapply(county_func, x = circles_list$county_75, y = points_75) # fails
 
 # Error in UseMethod("st_drop_geometry") : 
 #   no applicable method for 'st_drop_geometry' applied to an object of class "character"
@@ -85,7 +85,7 @@ mapply(county_func, x = circles_list_num$county_75, y = points_75_num)
 
 # Error in UseMethod("st_drop_geometry") : 
 #   no applicable method for 'st_drop_geometry' applied to an object of class "c('sfc_POINT', 'sfc')"
-
+class(points_75)
 sessionInfo()
 sf::sf_extSoftVersion()
 
